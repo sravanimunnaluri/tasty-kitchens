@@ -1,0 +1,36 @@
+.home-container {
+  padding: 3%;
+}
+
+.restaurants-list-container {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pagination-button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+.arrow-icon {
+  width: 32px;
+  height: 32px;
+
+  color: #334155;
+}
+.page-number {
+  font-family: Bree Serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 27px;
+  text-align: center;
+
+  color: #334155;
+}

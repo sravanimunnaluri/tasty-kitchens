@@ -1,0 +1,48 @@
+.restaurant-item {
+  text-decoration: none;
+  min-width: 33%;
+}
+.restaurant-card {
+  display: flex;
+  margin-bottom: 30px;
+}
+.restaurant-image {
+  width: 100px;
+  height: 100px;
+
+  border-radius: 8px;
+  margin-right: 20px;
+  margin-top: 15px;
+}
+.restaurant-item-details {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0px;
+}
+.restaurant-name {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 133%;
+
+  color: #334155;
+}
+.cuisine {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 171%;
+
+  color: #64748b;
+}
+.rating-values {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 18px;
+
+  color: #0f172a;
+}

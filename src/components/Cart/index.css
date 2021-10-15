@@ -1,0 +1,14 @@
+.cart-content-container {
+  background-color: #f9fbfe;
+  width: 90%;
+  margin: 10%;
+  padding-top: 2%;
+
+  border: 1px solid rgba(11, 105, 255, 0.1);
+  box-sizing: border-box;
+}
+.cart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

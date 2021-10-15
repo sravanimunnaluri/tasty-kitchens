@@ -1,0 +1,14 @@
+.image {
+  margin: auto;
+  max-height: 350px;
+}
+.carrousel-container {
+  padding: 30px;
+}
+
+@media screen and (max-width: 576px) {
+  .image {
+    max-height: 188px;
+    width: 414px;
+  }
+}

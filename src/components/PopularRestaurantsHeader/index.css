@@ -1,0 +1,96 @@
+.Restaurants-header {
+  display: flex;
+  flex-direction: column;
+}
+.Restaurants-list-heading {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: bold;
+
+  font-size: 24px;
+  line-height: 32px;
+
+  color: #183b56;
+}
+.filter {
+  display: flex;
+}
+@media screen and (min-width: 576px) {
+  .Restaurants-list-heading {
+    font-size: 32px;
+    line-height: 48px;
+  }
+  .restaurant-caption {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+
+    color: #64748b;
+    margin-right: auto;
+  }
+}
+.sort-by-container {
+  display: flex;
+  flex-direction: row;
+}
+@media screen and (max-width: 576px) {
+  .sort-by-container {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.restaurant-caption {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 24px;
+
+  color: #64748b;
+}
+.sort-by-icon {
+  color: #475569;
+  margin-right: 10px;
+  margin-top: 16px;
+}
+.sort-by {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+
+  color: #475569;
+}
+.sort-by-select {
+  background: #ffffff;
+  border: none;
+  outline: none;
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #475569;
+}
+.horizontal-line {
+  border: 1px dashed #cbd2d9;
+}
+@media screen and (max-width: 576px) {
+  .horizontal-line {
+    display: none;
+  }
+}
+.select-selected:after {
+  position: absolute;
+  content: '';
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}

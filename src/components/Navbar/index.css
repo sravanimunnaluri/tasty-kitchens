@@ -1,0 +1,129 @@
+.navbar-container {
+  display: flex;
+  padding: 16px;
+  flex-direction: row;
+  background-color: #f8fafc;
+  min-height: 90px;
+  justify-content: space-between;
+}
+.website-name-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.logo-image {
+  height: 34px;
+  width: 28px;
+  margin-right: 19px;
+}
+
+.heading {
+  font-size: 16px;
+  font-family: DM Sans;
+  font-style: italic;
+  font-weight: bold;
+
+  line-height: 32px;
+
+  color: #f7931e;
+}
+.hamburger-button {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .hamburger-button {
+    margin-left: auto;
+    display: initial;
+    justify-content: center;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background-color: transparent;
+  }
+}
+
+.nav-items-desktop {
+  display: flex;
+  justify-content: space-evenly;
+  list-style-type: none;
+  text-decoration: none;
+  width: 50%;
+}
+.cancel-button {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .nav-items-desktop {
+    display: flex;
+    position: absolute;
+    top: 92px;
+    flex-direction: row;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .inactive {
+    display: none;
+  }
+}
+@media screen and (max-width: 768px) {
+  .cancel-button {
+    display: block;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+}
+
+.nav-menu-desktop-container {
+  display: flex;
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+}
+.logo-image {
+  height: 49px;
+  width: 39px;
+}
+.heading {
+  font-family: DM Sans;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 32px;
+
+  color: #f7931e;
+}
+
+.nav-link {
+  text-decoration: none;
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 26px;
+  color: #334155;
+}
+.highlight {
+  color: #f7931e;
+}
+.logout-button {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  padding: 8px 16px;
+  height: 32px;
+  width: 73px;
+  background-color: #f7931e;
+  border-radius: 8px;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+}

@@ -1,0 +1,82 @@
+.dish-details-card {
+  display: flex;
+  min-width: 40%;
+  line-height: normal;
+  padding-bottom: 40px;
+  justify-content: center;
+}
+.dish-image {
+  width: 255px;
+  height: 150px;
+  border-radius: 8px;
+  padding-right: 20px;
+}
+.dish-details {
+  display: flex;
+  flex-direction: column;
+  line-height: normal;
+}
+.dish-name {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 1px;
+  color: #334155;
+}
+.rating {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: normal;
+  color: #334155;
+  align-items: center;
+}
+.rupee {
+  color: #334155;
+}
+.rating {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: normal;
+  display: flex;
+
+  color: #0a1f44;
+}
+.yellow-star {
+  color: #ffcc00;
+}
+.add-button {
+  padding: 8px 16px 8px 16px;
+  line-height: normal;
+  border: 2px solid #ffa412;
+  box-sizing: border-box;
+  border-radius: 8px;
+  height: 32px;
+  width: 64px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+
+  background-color: transparent;
+  color: #ffa412;
+}
+@media screen and (max-width: 576px) {
+  .dish-name {
+    font-size: 16px;
+  }
+  .rating {
+    font-size: 12px;
+  }
+  .rating {
+    font-size: 14px;
+  }
+  .dish-image {
+    height: 100px;
+    width: 160px;
+  }
+}

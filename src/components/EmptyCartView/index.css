@@ -1,0 +1,45 @@
+.cart-empty-view-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.no-orders-image {
+  width: 425px;
+  height: 367px;
+}
+.cart-empty-heading {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 48px;
+
+  text-align: center;
+
+  color: #1e293b;
+}
+.add-menu {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #64748b;
+}
+.order-now-btn {
+  padding: 8px 16px;
+
+  border: none;
+  background-color: #f7931e;
+  border-radius: 8px;
+
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+
+  color: #ffffff;
+}
