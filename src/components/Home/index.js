@@ -192,6 +192,7 @@ class Home extends Component {
           <RestaurantCard
             key={eachRestaurant.id}
             restaurantDetails={eachRestaurant}
+            testid="restaurant-item"
           />
         ))}
       </ul>
@@ -200,7 +201,13 @@ class Home extends Component {
 
   renderRestaurantsLoadingView = () => (
     <div className="products-loader-container" testid="restaurants-list-loader">
-      <Loader type="ThreeDots" color="#F7931E" height="50" width="50" />
+      <Loader
+        type="Circles"
+        color="#F7931E"
+        height="50"
+        width="50"
+        testid="restaurants-list-loader"
+      />
     </div>
   )
 
@@ -244,11 +251,14 @@ class Home extends Component {
   }
 
   renderRestaurantsOffersLoaderView = () => (
-    <div
-      className="restaurants-loader-container"
-      testid="restaurants-offers-loader"
-    >
-      <Loader type="ThreeDots" color="#F7931E" height="50" width="50" />
+    <div className="restaurants-loader-container">
+      <Loader
+        type="Circles"
+        color="#F7931E"
+        height="50"
+        width="50"
+        testid="restaurants-offers-loader"
+      />
     </div>
   )
 

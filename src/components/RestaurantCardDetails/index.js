@@ -26,6 +26,7 @@ class RestaurantCardDetails extends Component {
     itemsList: {},
     foodItemsList: [],
     apiStatusRestaurantDetails: apiStatusConstants.initial,
+    cartList: [],
   }
 
   getItemsFromRestaurant = async () => {
@@ -79,8 +80,107 @@ class RestaurantCardDetails extends Component {
     }
   }
 
+  getOldCartList = () => {
+    console.log('get')
+    const stringifiedCartList = localStorage.getItem('cartData')
+
+    const parsedCartList = JSON.parse(stringifiedCartList)
+    console.log(parsedCartList)
+    if (parsedCartList === null) {
+      return []
+    }
+    return parsedCartList
+  }
+
+  updateLocalStorage = () => {
+    const {cartList} = this.state
+    localStorage.setItem('cartData', JSON.stringify(cartList))
+  }
+
+  addCartItem = foodItem => {
+    const {cartList} = this.state
+    const RestaurantFoodItemObject = cartList.find(
+      eachCartItem => eachCartItem.id === foodItem.id,
+    )
+    if (RestaurantFoodItemObject) {
+      this.setState(
+        prevState => ({
+          cartList: prevState.cartList.map(eachCartItem => {
+            if (RestaurantFoodItemObject.id === eachCartItem.id) {
+              const updatedQuantity = 1 + foodItem.quantity
+
+              return {...eachCartItem, quantity: updatedQuantity}
+            }
+
+            return eachCartItem
+          }),
+        }),
+        this.updateLocalStorage,
+      )
+    } else {
+      const updatedCartList = [...cartList, foodItem]
+      console.log(foodItem)
+      this.setState({cartList: updatedCartList}, this.updateLocalStorage)
+    }
+  }
+
+  onIncrementCount = foodItemId => {
+    const {cartList} = this.state
+
+    const incrementFoodItemObject = cartList.find(
+      eachCartItem => eachCartItem.id === foodItemId,
+    )
+    this.setState(
+      prevState => ({
+        cartList: prevState.cartList.map(eachCartItem => {
+          if (incrementFoodItemObject.id === eachCartItem.id) {
+            const updatedQuantity = eachCartItem.quantity + 1
+
+            return {...eachCartItem, quantity: updatedQuantity}
+          }
+
+          return eachCartItem
+        }),
+      }),
+      this.updateLocalStorage,
+    )
+  }
+
+  removeCartItem = foodItemId => {
+    const {cartList} = this.state
+
+    const deleteFoodItemObject = cartList.find(
+      eachCartItem => eachCartItem.id === foodItemId,
+    )
+    const updatedCartList = cartList.filter(
+      each => each.id !== deleteFoodItemObject.id,
+    )
+    console.log(updatedCartList)
+    this.setState({cartList: updatedCartList}, this.updateLocalStorage)
+  }
+
+  onDecrementCount = foodItemId => {
+    const {cartList} = this.state
+
+    const decrementFoodItemObject = cartList.find(
+      eachCartItem => eachCartItem.id === foodItemId,
+    )
+
+    this.setState(prevState => ({
+      cartList: prevState.cartList.map(eachCartItem => {
+        if (decrementFoodItemObject === eachCartItem.id) {
+          const updatedQuantity = eachCartItem.quantity - 1
+          return {...eachCartItem, quantity: updatedQuantity}
+        }
+        return eachCartItem
+      }),
+    }))
+  }
+
   componentDidMount = () => {
     this.getItemsFromRestaurant()
+    const oldCartList = this.getOldCartList()
+    this.setState({cartList: oldCartList})
   }
 
   renderSuccessView = () => {
@@ -133,6 +233,10 @@ class RestaurantCardDetails extends Component {
                 FoodItemData={each}
                 rating={rating}
                 testid="fooditem"
+                addCartItem={this.addCartItem}
+                onIncrementCount={this.onIncrementCount}
+                onDecrementCount={this.onDecrementCount}
+                removeCartItem={this.removeCartItem}
               />
             ))}
           </ul>

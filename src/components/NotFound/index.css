@@ -1,16 +1,17 @@
-.not-found-page {
+.not-page {
   min-height: 928px;
   min-width: 1440px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   background-color: #ffffff;
 }
-.notfound-image {
+.not-image {
   height: 270px;
   width: 297px;
 }
-.notfound-heading {
+.not-heading {
   font-family: DM Sans;
   font-style: normal;
   font-weight: bold;
@@ -21,7 +22,7 @@
 
   color: #1e293b;
 }
-.notfound-subheading {
+.not-subheading {
   font-family: DM Sans;
   font-style: normal;
   font-weight: normal;
@@ -42,4 +43,6 @@
   color: #ffffff;
   background: #f7931e;
   border-radius: 12px;
+  outline: none;
+  border: none;
 }

@@ -1,45 +1,55 @@
-import CartContext from '../../context/CartContext'
-
+import {Component} from 'react'
 import './index.css'
 
-const Counter = props => (
-  <CartContext.Consumer>
-    {value => {
-      const {incrementCartItemQuantity, decrementCartItemQuantity} = value
-      const {quantity, foodItemId} = props
+class Counter extends Component {
+  state = {newQuantity: ''}
 
-      const onClickDecrement = () => {
-        decrementCartItemQuantity(foodItemId)
-      }
-      const onClickIncrement = () => {
-        incrementCartItemQuantity(foodItemId)
-      }
+  componentDidMount = () => {
+    const {quantity} = this.props
+    this.setState({newQuantity: quantity})
+  }
 
-      return (
-        <div className="counter-container">
-          <button
-            type="button"
-            onClick={onClickDecrement}
-            className="button-control"
-            testid="decrement-quantity"
-          >
-            -
-          </button>
-          <p className="quantity-control" testid="item-quantity">
-            {quantity}
-          </p>
-          <button
-            type="button"
-            onClick={onClickIncrement}
-            className="button-control"
-            testid="increment-quantity"
-          >
-            +
-          </button>
-        </div>
-      )
-    }}
-  </CartContext.Consumer>
-)
+  onClickIncrement = () => {
+    const {onClickIncrementCartItemQuantity, cartItemId} = this.props
+    this.setState(
+      prevState => ({newQuantity: prevState.newQuantity + 1}),
+      onClickIncrementCartItemQuantity(cartItemId),
+    )
+  }
 
+  onClickDecrement = () => {
+    const {onClickDecrementCartItemQuantity, cartItemId} = this.props
+    this.setState(
+      prevState => ({newQuantity: prevState.newQuantity - 1}),
+      onClickDecrementCartItemQuantity(cartItemId),
+    )
+  }
+
+  render() {
+    const {newQuantity} = this.state
+    return (
+      <div className="counter-container">
+        <button
+          type="button"
+          onClick={this.onClickDecrement}
+          className="button-control"
+          testid="decrement-quantity"
+        >
+          -
+        </button>
+        <p className="quantity-control" testid="item-quantity">
+          {newQuantity}
+        </p>
+        <button
+          type="button"
+          onClick={this.onClickIncrement}
+          className="button-control"
+          testid="increment-quantity"
+        >
+          +
+        </button>
+      </div>
+    )
+  }
+}
 export default Counter
