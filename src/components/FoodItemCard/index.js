@@ -5,15 +5,15 @@ import {Component} from 'react'
 import './index.css'
 
 class FoodItemCard extends Component {
-  state = {quantity: 1, isAddButtonClicked: false}
+  state = {quantity: 0, isAddButtonClicked: false}
 
   onClickAddToCart = () => {
     const {addCartItem} = this.props
     const {FoodItemData} = this.props
-    const {quantity} = this.state
+    const quantity = 1
 
     this.setState(
-      {isAddButtonClicked: true},
+      {isAddButtonClicked: true, quantity: 1},
       addCartItem({...FoodItemData, quantity}),
     )
   }
@@ -33,6 +33,7 @@ class FoodItemCard extends Component {
     const {onDecrementCount, removeCartItem} = this.props
     const {FoodItemData} = this.props
     const {quantity} = this.state
+
     if (quantity > 1) {
       this.setState(
         prevState => ({
@@ -53,7 +54,7 @@ class FoodItemCard extends Component {
   renderAddCartItem = () => {
     const {isAddButtonClicked} = this.state
     const {quantity} = this.state
-    return isAddButtonClicked ? (
+    return quantity > 0 && isAddButtonClicked ? (
       <div className="counter-container">
         <button
           type="button"
@@ -92,7 +93,7 @@ class FoodItemCard extends Component {
     const {name, cost, imageUrl, id} = FoodItemData
 
     return (
-      <div className="dish-details-card">
+      <li className="dish-details-card" key={id} testid="foodItem">
         <img src={imageUrl} alt="dish" className="dish-image" />
         <div className="dish-details">
           <h1 className="dish-name">{name}</h1>
@@ -100,12 +101,13 @@ class FoodItemCard extends Component {
             {' '}
             <BiRupee className="rupee" /> {cost}
           </p>
-          <p className="rating">
-            <AiFillStar className="yellow-star" /> {rating}
-          </p>
+          <span>
+            <AiFillStar className="yellow-star" />
+          </span>
+          <p className="rating">{rating}</p>
           {this.renderAddCartItem()}
         </div>
-      </div>
+      </li>
     )
   }
 

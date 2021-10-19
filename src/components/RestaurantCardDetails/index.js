@@ -29,12 +29,20 @@ class RestaurantCardDetails extends Component {
     cartList: [],
   }
 
+  getOldCartList = () => {
+    const stringifiedCartList = localStorage.getItem('cartData')
+    const parsedCartList = JSON.parse(stringifiedCartList)
+    if (parsedCartList === null) {
+      return []
+    }
+    return parsedCartList
+  }
+
   getItemsFromRestaurant = async () => {
+    this.setState({apiStatusRestaurantDetails: apiStatusConstants.inprogress})
     const {match} = this.props
     const {params} = match
     const {id} = params
-    console.log(id)
-    this.setState({apiStatusRestaurantDetails: apiStatusConstants.inprogress})
 
     const apiUrl = `https://apis.ccbp.in/restaurants-list/${id}`
 
@@ -46,7 +54,6 @@ class RestaurantCardDetails extends Component {
       method: 'GET',
     }
     const response = await fetch(apiUrl, options)
-    console.log(response)
 
     if (response.ok) {
       const fetchedData = await response.json()
@@ -80,18 +87,6 @@ class RestaurantCardDetails extends Component {
     }
   }
 
-  getOldCartList = () => {
-    console.log('get')
-    const stringifiedCartList = localStorage.getItem('cartData')
-
-    const parsedCartList = JSON.parse(stringifiedCartList)
-    console.log(parsedCartList)
-    if (parsedCartList === null) {
-      return []
-    }
-    return parsedCartList
-  }
-
   updateLocalStorage = () => {
     const {cartList} = this.state
     localStorage.setItem('cartData', JSON.stringify(cartList))
@@ -119,7 +114,6 @@ class RestaurantCardDetails extends Component {
       )
     } else {
       const updatedCartList = [...cartList, foodItem]
-      console.log(foodItem)
       this.setState({cartList: updatedCartList}, this.updateLocalStorage)
     }
   }
@@ -166,15 +160,18 @@ class RestaurantCardDetails extends Component {
       eachCartItem => eachCartItem.id === foodItemId,
     )
 
-    this.setState(prevState => ({
-      cartList: prevState.cartList.map(eachCartItem => {
-        if (decrementFoodItemObject === eachCartItem.id) {
-          const updatedQuantity = eachCartItem.quantity - 1
-          return {...eachCartItem, quantity: updatedQuantity}
-        }
-        return eachCartItem
+    this.setState(
+      prevState => ({
+        cartList: prevState.cartList.map(eachCartItem => {
+          if (decrementFoodItemObject.id === eachCartItem.id) {
+            const updatedQuantity = eachCartItem.quantity - 1
+            return {...eachCartItem, quantity: updatedQuantity}
+          }
+          return eachCartItem
+        }),
       }),
-    }))
+      this.updateLocalStorage,
+    )
   }
 
   componentDidMount = () => {
@@ -200,7 +197,7 @@ class RestaurantCardDetails extends Component {
       <div className="restaurant-details-page">
         <Navbar />
         <div className="restaurant-specific-details">
-          <img src={imageUrl} alt="food item" className="special-dish-image" />
+          <img src={imageUrl} alt="restaurant" className="special-dish-image" />
           <div className="special-dish">
             <h1 className="restaurant-title">{name}</h1>
             <p className=" restaurant-details">{cuisine}</p>
@@ -210,9 +207,9 @@ class RestaurantCardDetails extends Component {
                 <p className="rating-details">
                   <AiFillStar className="white-star" /> {rating}
                 </p>
-                <p className="rating-details">
+                <h1 className="rating-details">
                   {reviewsCount} <AiOutlinePlus /> Ratings
-                </p>
+                </h1>
               </div>
               <hr className="line-separation" />
               <div className="price-container">
@@ -232,7 +229,7 @@ class RestaurantCardDetails extends Component {
                 key={each.id}
                 FoodItemData={each}
                 rating={rating}
-                testid="fooditem"
+                testid="foodItem"
                 addCartItem={this.addCartItem}
                 onIncrementCount={this.onIncrementCount}
                 onDecrementCount={this.onDecrementCount}
@@ -248,8 +245,17 @@ class RestaurantCardDetails extends Component {
   }
 
   renderLoadingView = () => (
-    <div className="products-loader-container" testid="restaurants-list-loader">
-      <Loader type="ThreeDots" color="#F7931E" height="50" width="50" />
+    <div
+      className="products-loader-container"
+      testid="restaurants-details-loader"
+    >
+      <Loader
+        type="ThreeDots"
+        color="#F7931E"
+        height="50"
+        width="50"
+        testid="restaurants-details-loader"
+      />
     </div>
   )
 
@@ -280,7 +286,7 @@ class RestaurantCardDetails extends Component {
         return this.renderSuccessView()
       case apiStatusConstants.failure:
         return this.renderFailureView()
-      case apiStatusConstants.inProgress:
+      case apiStatusConstants.inprogress:
         return this.renderLoadingView()
       default:
         return null

@@ -19,10 +19,20 @@ class Counter extends Component {
 
   onClickDecrement = () => {
     const {onClickDecrementCartItemQuantity, cartItemId} = this.props
-    this.setState(
-      prevState => ({newQuantity: prevState.newQuantity - 1}),
-      onClickDecrementCartItemQuantity(cartItemId),
-    )
+    const {newQuantity} = this.state
+    if (newQuantity > 1) {
+      this.setState(
+        prevState => ({newQuantity: prevState.newQuantity - 1}),
+        onClickDecrementCartItemQuantity(cartItemId),
+      )
+    } else {
+      this.removeCartItemDetails()
+    }
+  }
+
+  removeCartItemDetails = () => {
+    const {removeCartItem, cartItemId} = this.props
+    removeCartItem(cartItemId)
   }
 
   render() {

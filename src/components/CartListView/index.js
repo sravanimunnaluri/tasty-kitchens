@@ -7,23 +7,27 @@ const CartListView = props => {
     cartList,
     onClickIncrementCartItemQuantity,
     onClickDecrementCartItemQuantity,
+    removeCartItem,
   } = props
   return (
-    <ul className="cart-list">
-      <li className="cart-categories-heading">
-        <h1 className="cart-heading">Item</h1>
-        <h1 className="cart-heading">Quantity</h1>
-        <h1 className="cart-heading">Price</h1>
-      </li>
-      {cartList.map(eachCartItem => (
-        <CartItem
-          key={eachCartItem.id}
-          cartItemDetails={eachCartItem}
-          onClickIncrementCartItemQuantity={onClickIncrementCartItemQuantity}
-          onClickDecrementCartItemQuantity={onClickDecrementCartItemQuantity}
-        />
-      ))}
-    </ul>
+    <div className="cart-list">
+      <div className="cart-categories-heading">
+        <p className="cart-heading">Item</p>
+        <p className="cart-heading">Quantity</p>
+        <p className="cart-heading">Price</p>
+      </div>
+      <ul>
+        {cartList.map(eachCartItem => (
+          <CartItem
+            key={eachCartItem.id}
+            cartItemDetails={eachCartItem}
+            onClickIncrementCartItemQuantity={onClickIncrementCartItemQuantity}
+            onClickDecrementCartItemQuantity={onClickDecrementCartItemQuantity}
+            removeCartItem={removeCartItem}
+          />
+        ))}
+      </ul>
+    </div>
   )
 }
 

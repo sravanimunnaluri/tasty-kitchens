@@ -10,31 +10,29 @@ import CartSummary from '../CartSummary'
 import OrderSuccess from '../OrderSuccess'
 import './index.css'
 
-class Cart extends Component {
-  state = {cartList: [], isPlaceOrderClicked: false}
-
-  getOldCartList = () => {
-    const stringifiedCartList = localStorage.getItem('cartData')
-    const parsedCartList = JSON.parse(stringifiedCartList)
-    if (parsedCartList === null) {
-      return []
-    }
-    return parsedCartList
+const getOldCartList = () => {
+  const stringifiedCartList = localStorage.getItem('cartData')
+  const parsedCartList = JSON.parse(stringifiedCartList)
+  if (parsedCartList === null) {
+    return []
   }
+  return parsedCartList
+}
 
-  componentDidMount = () => {
-    const oldCartList = this.getOldCartList()
-    this.setState({cartList: oldCartList})
+class Cart extends Component {
+  state = {cartList: getOldCartList(), isPlaceOrderClicked: false}
+
+  onClickPlaceOrder = () => {
+    this.setState({isPlaceOrderClicked: true})
+    localStorage.removeItem('cartData')
   }
 
   updateLocalStorage = () => {
-    console.log('update')
     const {cartList} = this.state
     localStorage.setItem('cartData', JSON.stringify(cartList))
   }
 
   onClickIncrementCartItemQuantity = cartItemId => {
-    console.log('increment')
     const {cartList} = this.state
 
     const incrementFoodItemObject = cartList.find(
@@ -62,19 +60,19 @@ class Cart extends Component {
     const decrementFoodItemObject = cartList.find(
       eachCartItem => eachCartItem.id === cartItemId,
     )
-    if (decrementFoodItemObject.quantity > 1) {
-      this.setState(prevState => ({
+
+    this.setState(
+      prevState => ({
         cartList: prevState.cartList.map(eachCartItem => {
-          if (decrementFoodItemObject === eachCartItem.id) {
+          if (decrementFoodItemObject.id === eachCartItem.id) {
             const updatedQuantity = eachCartItem.quantity - 1
             return {...eachCartItem, quantity: updatedQuantity}
           }
           return eachCartItem
         }),
-      }))
-    } else {
-      this.removeCartItem(cartItemId)
-    }
+      }),
+      this.updateLocalStorage,
+    )
   }
 
   removeCartItem = cartItemId => {
@@ -88,14 +86,6 @@ class Cart extends Component {
     )
     console.log(updatedCartList)
     this.setState({cartList: updatedCartList}, this.updateLocalStorage)
-  }
-
-  removeAllCartItems = () => {
-    this.setState({cartList: []})
-  }
-
-  onClickPlaceOrder = () => {
-    this.setState({isPlaceOrderClicked: true})
   }
 
   renderCartView = () => {
@@ -118,15 +108,16 @@ class Cart extends Component {
                 onClickDecrementCartItemQuantity={
                   this.onClickDecrementCartItemQuantity
                 }
+                removeCartItem={this.removeCartItem}
               />
               <CartSummary
                 onClickPlaceOrder={this.onClickPlaceOrder}
                 cartList={cartList}
               />
+              <Footer />
             </div>
           )}
         </div>
-        <Footer />
       </>
     )
   }

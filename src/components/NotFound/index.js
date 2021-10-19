@@ -5,9 +5,8 @@ const NotFound = () => (
   <div className="not-page">
     <img src="./img/NotFound.png" alt="not found" className="not-image" />
     <h1 className="not-heading">Page Not Found</h1>
-    <p className="not-subheading">
-      we are sorry, the page you requested could not be found
-    </p>
+    <p>we are sorry, the page you requested could not be found</p>
+    <p>Please go back to home page</p>
 
     <Link to="/">
       <button className="home-button" type="button">

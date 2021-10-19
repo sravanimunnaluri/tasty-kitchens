@@ -70,7 +70,7 @@ class Home extends Component {
           <AiOutlineLeftSquare className="arrow-icon" />
         </button>
         <p className="page-number" testid="active-page-number">
-          {activePageNumber} of {noOfPages}
+          {activePageNumber} of 20
         </p>
         <button
           type="button"
@@ -247,18 +247,19 @@ class Home extends Component {
 
   renderRestaurantsOffersSuccessView = () => {
     const {offersList} = this.state
-    return <ReactSlick offersList={offersList} />
+    return (
+      <ul>
+        <ReactSlick offersList={offersList} key={offersList.id} />
+      </ul>
+    )
   }
 
   renderRestaurantsOffersLoaderView = () => (
-    <div className="restaurants-loader-container">
-      <Loader
-        type="Circles"
-        color="#F7931E"
-        height="50"
-        width="50"
-        testid="restaurants-offers-loader"
-      />
+    <div
+      className="restaurants-loader-container"
+      testid="restaurants-offers-loader"
+    >
+      <Loader type="Circles" color="#F7931E" height="50" width="50" />
     </div>
   )
 

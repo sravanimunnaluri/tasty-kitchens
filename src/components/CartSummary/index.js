@@ -3,7 +3,7 @@ import {BiRupee} from 'react-icons/bi'
 import './index.css'
 
 const CartSummary = props => {
-  const {onClickPlaceOrder, cartList} = props
+  const {cartList, onClickPlaceOrder} = props
 
   const onClickPlace = () => {
     onClickPlaceOrder()
@@ -23,10 +23,10 @@ const CartSummary = props => {
     <div className="cart-summary-container">
       <hr className="cart-line-separation" />
       <div className="cart-summary">
-        <h className="order-heading">Order Total:</h>
-        <h1 className="price" testid="total-price">
-          {getTotalPrice()}/-{' '}
-        </h1>
+        <h1 className="order-heading">Order Total:</h1>
+        <p className="price" testid="total-price">
+          <BiRupee /> {getTotalPrice()}/-{' '}
+        </p>
       </div>
       <button
         className="place-order-button"

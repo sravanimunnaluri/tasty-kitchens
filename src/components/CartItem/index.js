@@ -7,6 +7,7 @@ const CartItem = props => {
     cartItemDetails,
     onClickDecrementCartItemQuantity,
     onClickIncrementCartItemQuantity,
+    removeCartItem,
   } = props
 
   const {name, cost, imageUrl, id, quantity} = cartItemDetails
@@ -21,15 +22,18 @@ const CartItem = props => {
         <h1 className="cart-product-title-md cart-product-title">{name}</h1>
       </div>
       <div className="cart-name-price">
-        <p className="cart-product-title-sm cart-product-title">{name}</p>
+        <h1 className="cart-product-title-sm cart-product-title">{name}</h1>
         <Counter
           cartItemId={id}
           quantity={quantity}
           onClickDecrementCartItemQuantity={onClickDecrementCartItemQuantity}
           onClickIncrementCartItemQuantity={onClickIncrementCartItemQuantity}
+          removeCartItem={removeCartItem}
         />
 
-        <p className="cart-total-price">Rs {totalPrice}/-</p>
+        <p className="cart-total-price" testid="total-price">
+          Rs {totalPrice}/-
+        </p>
       </div>
     </li>
   )

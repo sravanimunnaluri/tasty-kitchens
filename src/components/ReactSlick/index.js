@@ -13,7 +13,7 @@ const ReactSlick = props => {
     slidesToScroll: 1,
   }
   return (
-    <div className="carrousel-container">
+    <ul className="carrousel-container">
       <Slider {...settings}>
         {offersList.map(each => (
           <li>
@@ -26,7 +26,7 @@ const ReactSlick = props => {
           </li>
         ))}
       </Slider>
-    </div>
+    </ul>
   )
 }
 
