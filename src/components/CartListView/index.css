@@ -28,3 +28,6 @@
     display: none;
   }
 }
+.cart-list-items {
+  list-style-type: none;
+}

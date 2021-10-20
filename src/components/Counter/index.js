@@ -5,25 +5,26 @@ class Counter extends Component {
   state = {newQuantity: ''}
 
   componentDidMount = () => {
-    const {quantity} = this.props
+    const {foodItemDetails} = this.props
+    const {quantity} = foodItemDetails
     this.setState({newQuantity: quantity})
   }
 
   onClickIncrement = () => {
-    const {onClickIncrementCartItemQuantity, cartItemId} = this.props
+    const {onClickIncrementCartItemQuantity, foodItemDetails} = this.props
     this.setState(
       prevState => ({newQuantity: prevState.newQuantity + 1}),
-      onClickIncrementCartItemQuantity(cartItemId),
+      onClickIncrementCartItemQuantity(foodItemDetails.id),
     )
   }
 
   onClickDecrement = () => {
-    const {onClickDecrementCartItemQuantity, cartItemId} = this.props
+    const {onClickDecrementCartItemQuantity, foodItemDetails} = this.props
     const {newQuantity} = this.state
     if (newQuantity > 1) {
       this.setState(
         prevState => ({newQuantity: prevState.newQuantity - 1}),
-        onClickDecrementCartItemQuantity(cartItemId),
+        onClickDecrementCartItemQuantity(foodItemDetails.id),
       )
     } else {
       this.removeCartItemDetails()
@@ -31,8 +32,8 @@ class Counter extends Component {
   }
 
   removeCartItemDetails = () => {
-    const {removeCartItem, cartItemId} = this.props
-    removeCartItem(cartItemId)
+    const {removeCartItem, foodItemDetails} = this.props
+    removeCartItem(foodItemDetails.id)
   }
 
   render() {

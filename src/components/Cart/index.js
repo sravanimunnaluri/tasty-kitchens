@@ -88,6 +88,31 @@ class Cart extends Component {
     this.setState({cartList: updatedCartList}, this.updateLocalStorage)
   }
 
+  renderCartContainer = () => {
+    const {cartList} = this.state
+    return (
+      <div className="cart">
+        <div className="cart-content-container">
+          <CartListView
+            cartList={cartList}
+            onClickIncrementCartItemQuantity={
+              this.onClickIncrementCartItemQuantity
+            }
+            onClickDecrementCartItemQuantity={
+              this.onClickDecrementCartItemQuantity
+            }
+            removeCartItem={this.removeCartItem}
+          />
+          <CartSummary
+            onClickPlaceOrder={this.onClickPlaceOrder}
+            cartList={cartList}
+          />
+        </div>
+        <Footer />
+      </div>
+    )
+  }
+
   renderCartView = () => {
     const {cartList} = this.state
     const showEmptyView = cartList.length === 0
@@ -96,27 +121,7 @@ class Cart extends Component {
       <>
         <Navbar />
         <div className="cart-container">
-          {showEmptyView ? (
-            <EmptyCartView />
-          ) : (
-            <div className="cart-content-container">
-              <CartListView
-                cartList={cartList}
-                onClickIncrementCartItemQuantity={
-                  this.onClickIncrementCartItemQuantity
-                }
-                onClickDecrementCartItemQuantity={
-                  this.onClickDecrementCartItemQuantity
-                }
-                removeCartItem={this.removeCartItem}
-              />
-              <CartSummary
-                onClickPlaceOrder={this.onClickPlaceOrder}
-                cartList={cartList}
-              />
-              <Footer />
-            </div>
-          )}
+          {showEmptyView ? <EmptyCartView /> : this.renderCartContainer()}
         </div>
       </>
     )

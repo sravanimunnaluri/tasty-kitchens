@@ -1,21 +1,24 @@
+import {BiRupee} from 'react-icons/bi'
+
 import Counter from '../Counter'
 
 import './index.css'
 
 const CartItem = props => {
   const {
-    cartItemDetails,
+    foodItemDetails,
     onClickDecrementCartItemQuantity,
     onClickIncrementCartItemQuantity,
     removeCartItem,
   } = props
+  console.log(foodItemDetails)
 
-  const {name, cost, imageUrl, id, quantity} = cartItemDetails
+  const {name, cost, imageUrl, id, quantity} = foodItemDetails
 
   const totalPrice = cost * quantity
 
   return (
-    <li className="cart-item">
+    <div className="cart-item">
       <div className="cart-item-description">
         <img className="cart-product-image" src={imageUrl} alt={name} />
 
@@ -24,18 +27,18 @@ const CartItem = props => {
       <div className="cart-name-price">
         <h1 className="cart-product-title-sm cart-product-title">{name}</h1>
         <Counter
-          cartItemId={id}
-          quantity={quantity}
+          foodItemDetails={foodItemDetails}
           onClickDecrementCartItemQuantity={onClickDecrementCartItemQuantity}
           onClickIncrementCartItemQuantity={onClickIncrementCartItemQuantity}
           removeCartItem={removeCartItem}
         />
 
         <p className="cart-total-price" testid="total-price">
-          Rs {totalPrice}/-
+          <BiRupee />
+          {totalPrice}/-
         </p>
       </div>
-    </li>
+    </div>
   )
 }
 

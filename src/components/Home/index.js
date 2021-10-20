@@ -70,8 +70,9 @@ class Home extends Component {
           <AiOutlineLeftSquare className="arrow-icon" />
         </button>
         <p className="page-number" testid="active-page-number">
-          {activePageNumber} of 20
+          {activePageNumber}
         </p>
+        <span className="page-number"> of {noOfPages}</span>
         <button
           type="button"
           className="pagination-button"

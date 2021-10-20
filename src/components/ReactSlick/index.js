@@ -16,13 +16,8 @@ const ReactSlick = props => {
     <ul className="carrousel-container">
       <Slider {...settings}>
         {offersList.map(each => (
-          <li>
-            <img
-              src={each.image_url}
-              alt="offer"
-              key={each.id}
-              className="image"
-            />
+          <li key={each.id}>
+            <img src={each.image_url} alt="offer" className="image" />
           </li>
         ))}
       </Slider>

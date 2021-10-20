@@ -16,15 +16,20 @@ const CartListView = props => {
         <p className="cart-heading">Quantity</p>
         <p className="cart-heading">Price</p>
       </div>
-      <ul>
+      <ul className="cart-list-items">
         {cartList.map(eachCartItem => (
-          <CartItem
-            key={eachCartItem.id}
-            cartItemDetails={eachCartItem}
-            onClickIncrementCartItemQuantity={onClickIncrementCartItemQuantity}
-            onClickDecrementCartItemQuantity={onClickDecrementCartItemQuantity}
-            removeCartItem={removeCartItem}
-          />
+          <li key={eachCartItem.id}>
+            <CartItem
+              foodItemDetails={eachCartItem}
+              onClickIncrementCartItemQuantity={
+                onClickIncrementCartItemQuantity
+              }
+              onClickDecrementCartItemQuantity={
+                onClickDecrementCartItemQuantity
+              }
+              removeCartItem={removeCartItem}
+            />
+          </li>
         ))}
       </ul>
     </div>

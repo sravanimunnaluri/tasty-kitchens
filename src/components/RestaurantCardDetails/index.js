@@ -74,6 +74,7 @@ class RestaurantCardDetails extends Component {
           foodType: each.food_type,
           imageUrl: each.image_url,
           id: each.id,
+          rating: each.rating,
         })),
       }
 
@@ -207,9 +208,9 @@ class RestaurantCardDetails extends Component {
                 <p className="rating-details">
                   <AiFillStar className="white-star" /> {rating}
                 </p>
-                <h1 className="rating-details">
+                <p className="rating-details">
                   {reviewsCount} <AiOutlinePlus /> Ratings
-                </h1>
+                </p>
               </div>
               <hr className="line-separation" />
               <div className="price-container">
@@ -228,7 +229,6 @@ class RestaurantCardDetails extends Component {
               <FoodItemCard
                 key={each.id}
                 FoodItemData={each}
-                rating={rating}
                 testid="foodItem"
                 addCartItem={this.addCartItem}
                 onIncrementCount={this.onIncrementCount}
@@ -249,13 +249,7 @@ class RestaurantCardDetails extends Component {
       className="products-loader-container"
       testid="restaurants-details-loader"
     >
-      <Loader
-        type="ThreeDots"
-        color="#F7931E"
-        height="50"
-        width="50"
-        testid="restaurants-details-loader"
-      />
+      <Loader type="ThreeDots" color="#F7931E" height="50" width="50" />
     </div>
   )
 

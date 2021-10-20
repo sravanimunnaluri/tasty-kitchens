@@ -88,9 +88,9 @@ class FoodItemCard extends Component {
   }
 
   renderFoodItemCard = () => {
-    const {FoodItemData, rating} = this.props
+    const {FoodItemData} = this.props
 
-    const {name, cost, imageUrl, id} = FoodItemData
+    const {name, cost, imageUrl, id, rating} = FoodItemData
 
     return (
       <li className="dish-details-card" key={id} testid="foodItem">
@@ -101,10 +101,14 @@ class FoodItemCard extends Component {
             {' '}
             <BiRupee className="rupee" /> {cost}
           </p>
-          <span>
-            <AiFillStar className="yellow-star" />
-          </span>
-          <p className="rating">{rating}</p>
+
+          <p className="rating">
+            <span>
+              <AiFillStar className="yellow-star" />
+            </span>
+            {rating}
+          </p>
+
           {this.renderAddCartItem()}
         </div>
       </li>

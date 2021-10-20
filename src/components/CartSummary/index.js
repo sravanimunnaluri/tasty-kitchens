@@ -10,7 +10,6 @@ const CartSummary = props => {
   }
 
   const getTotalPrice = () => {
-    console.log(67899)
     let total = 0
     cartList.map(each => {
       total += each.quantity * each.cost
